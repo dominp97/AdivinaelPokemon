@@ -1,11 +1,14 @@
 package com.pmdm.adivinaelpokemon;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 public class JuegoActivity extends AppCompatActivity {
@@ -21,66 +24,24 @@ public class JuegoActivity extends AppCompatActivity {
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         cantidadImagenes = Integer.parseInt(message);
         lNImagenes = findViewById(R.id.imagenes);
-        Button[] listabtn = new Button[cantidadImagenes];
+        ImageButton[] listabtn = new ImageButton[cantidadImagenes];
         LinearLayout[] listaLineales = new LinearLayout[cantidadImagenes/3];
-        /*
-        //inicializar linear
-        for(int i = 0; i< listaLineales.length;i++){
-            listaLineales[i] = new LinearLayout(this);
-            listaLineales[i].setLayoutParams(
-                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        }
-
-        lNImagenes.addView(listaLineales[0]);
-        Button btn = new Button(this);
-        Button btn1 = new Button(this);
-        Button btn2 = new Button(this);
-        Button btn3 = new Button(this);
-        ViewGroup.LayoutParams lP = new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-
-        btn.setLayoutParams(lP);
-        btn1.setLayoutParams(lP);
-        btn2.setLayoutParams(lP);
-        btn3.setLayoutParams(lP);
-        listaLineales[1].addView(btn2);
-        listaLineales[1].addView(btn3);
-        listaLineales[0].addView(btn);
-        listaLineales[0].addView(btn1);
 
 
-        //rellenar linear
 
-        for(int i = 0;i< listabtn.length / 3;i++){
-            for(int j = 0; j< listabtn.length / 3;i++){
 
-                //listaLineales[i].addView(new Button(this));
-
-            }
-            //listabtn[i] = new Button(this);
-            listaLineales[i].setLayoutParams(
-                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT));
-            lNImagenes.addView(listaLineales[i]);
-        }
-
-        /*
-        for(Button btn: listabtn){
-            lNImagenes.addView(btn);
-        }
-        */
 
         ViewGroup.LayoutParams lP = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         ((LinearLayout.LayoutParams) lP).weight = 1;
 
-        Button btn = new Button(this);
-        Button btn1 = new Button(this);
-        Button btn2 = new Button(this);
+        ImageButton btn = new ImageButton(this);
+        btn.setImageDrawable(getResources().getDrawable(R.drawable.abra));
+        ImageButton btn1 = new ImageButton(this);
+        btn1.setImageDrawable(getResources().getDrawable(R.drawable.eevee));
+        ImageButton btn2 = new ImageButton(this);
+        btn2.setImageDrawable(getResources().getDrawable(R.drawable.mew));
 
         btn.setLayoutParams(lP);
         btn1.setLayoutParams(lP);
@@ -93,9 +54,12 @@ public class JuegoActivity extends AppCompatActivity {
 
 
         //Segundo linear
-        Button btn4 = new Button(this);
-        Button btn5 = new Button(this);
-        Button btn6 = new Button(this);
+        ImageButton btn4 = new ImageButton(this);
+        btn4.setImageDrawable(getResources().getDrawable(R.drawable.charmander));
+        ImageButton btn5 = new ImageButton(this);
+        btn5.setImageDrawable(getResources().getDrawable(R.drawable.bullbasaur));
+        ImageButton btn6 = new ImageButton(this);
+        btn6.setImageDrawable(getResources().getDrawable(R.drawable.squirtle));
 
         btn4.setLayoutParams(lP);
         btn5.setLayoutParams(lP);
@@ -108,9 +72,12 @@ public class JuegoActivity extends AppCompatActivity {
 
 
         //Tercer linear
-        Button btn8 = new Button(this);
-        Button btn9 = new Button(this);
-        Button btn10 = new Button(this);
+        ImageButton btn8 = new ImageButton(this);
+        btn8.setImageDrawable(getResources().getDrawable(R.drawable.jigglypuff));
+        ImageButton btn9 = new ImageButton(this);
+        btn9.setImageDrawable(getResources().getDrawable(R.drawable.snorlax));
+        ImageButton btn10 = new ImageButton(this);
+        btn10.setImageDrawable(getResources().getDrawable(R.drawable.venonat));
 
         btn8.setLayoutParams(lP);
         btn9.setLayoutParams(lP);
@@ -120,6 +87,14 @@ public class JuegoActivity extends AppCompatActivity {
         listaLineales[2].addView(btn9);
         listaLineales[2].addView(btn10);
         lNImagenes.addView(listaLineales[2]);
+    }
+
+
+    public String click(View view){
+
+
+
+        return "";
     }
 
 
