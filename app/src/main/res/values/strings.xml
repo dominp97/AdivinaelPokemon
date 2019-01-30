@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Adivina el Pokemon</string>
+
+    <string-array name="pokemon">
+        <item>Abra</item>
+        <item>Evee</item>
+        <item>Mew</item>
+        <item>Charmander</item>
+        <item>Bulbasur</item>
+        <item>Blastoise</item>
+        <item>Jiglipuf</item>
+        <item>Snorlax</item>
+        <item>Venonaut</item>
+    </string-array>
+
 </resources>
