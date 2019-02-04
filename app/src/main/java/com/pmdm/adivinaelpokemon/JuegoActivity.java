@@ -11,9 +11,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.wajahatkarim3.easyflipview.EasyFlipView;
 
 import java.util.Random;
 
@@ -82,8 +85,6 @@ public class JuegoActivity extends AppCompatActivity {
         listaLineales[1] = new LinearLayout(this);
         listaLineales[2] = new LinearLayout(this);
 
-
-
         listaLineales[0].addView(btn);
         listaLineales[0].addView(btn1);
         listaLineales[0].addView(btn2);
@@ -123,7 +124,7 @@ public class JuegoActivity extends AppCompatActivity {
         Resources res = getResources();
         String[] poke = res.getStringArray(R.array.pokemon);
         Random r = new Random();
-        tv1.setText(poke[r.nextInt(10)]);
+        tv1.setText(poke[r.nextInt(8)]);
 
         //Atributos texto
         ViewGroup.LayoutParams llPt = new LinearLayout.LayoutParams(
@@ -134,7 +135,7 @@ public class JuegoActivity extends AppCompatActivity {
         lNImagenes.addView(tv1);
 
 
-        new contador().execute("");
+        //new contador().execute("");
 
     }
 
