@@ -123,7 +123,7 @@ public class JuegoActivity extends AppCompatActivity {
         Resources res = getResources();
         String[] poke = res.getStringArray(R.array.pokemon);
         Random r = new Random();
-        tv1.setText(poke[r.nextInt(10)]);
+        tv1.setText(poke[r.nextInt(9)]);
 
         //Atributos texto
         ViewGroup.LayoutParams llPt = new LinearLayout.LayoutParams(
@@ -156,10 +156,11 @@ public class JuegoActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
 
             try {
-                while(contrareloj > 60){
-                    this.wait(1000);
+                while(contrareloj > 0){
+
                     contrareloj--;
                     btnT.setText(contrareloj+"");
+                    Thread.sleep(1000);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -173,6 +174,7 @@ public class JuegoActivity extends AppCompatActivity {
             super.onPreExecute();
             contrareloj = 60;
             btnT = findViewById(R.id.button2);
+            btnT.setText(contrareloj+"");
         }
     }
 
