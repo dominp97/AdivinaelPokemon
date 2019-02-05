@@ -8,12 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -136,6 +139,21 @@ public class JuegoActivity extends AppCompatActivity {
 
         new contador().execute("");
 
+
+    }
+
+    //Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.my, menu);
+        //TODO cambiar aqui para nuestro menu
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Toast.makeText(getApplicationContext(),"Has seleccionado: "+item.getTitle(),Toast.LENGTH_LONG).show();
+
+        return super.onOptionsItemSelected(item);
     }
 
 
