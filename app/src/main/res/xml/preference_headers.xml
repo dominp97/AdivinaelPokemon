@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <header
+        android:fragment="com.pmdm.adivinaelpokemon.PerferenciasPersonales"
+        android:icon="?attr/actionModeShareDrawable"
+        android:summary="No es por cotillear, tan solo necesitamos tus datos"
+        android:title="Datos personales"
+        tools:icon="@tools:sample/avatars[6]" />
+</preference-headers>

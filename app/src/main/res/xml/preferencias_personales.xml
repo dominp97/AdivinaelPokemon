@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Configuración">
+
+        <EditTextPreference
+            android:defaultValue=" "
+            android:key="nombre_jug"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Escribe tu nombre" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/niveles_de_dificultad"
+            android:entryValues="@array/niveles_de_dificultad"
+            android:key="nivelDificultad"
+            android:title="Elige una dificultad" />
+    </PreferenceCategory>
+</PreferenceScreen>

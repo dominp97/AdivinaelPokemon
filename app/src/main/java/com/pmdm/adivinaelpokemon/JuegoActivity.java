@@ -142,7 +142,7 @@ public class JuegoActivity extends AppCompatActivity {
 
     }
 
-    //Menu
+    //region Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.my, menu);
@@ -152,10 +152,11 @@ public class JuegoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Toast.makeText(getApplicationContext(),"Has seleccionado: "+item.getTitle(),Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, MiFragmentJuego.class));
 
         return super.onOptionsItemSelected(item);
     }
-
+    //endregion
 
     public String click(View view){
 

@@ -13,4 +13,10 @@
         <item>Venonaut</item>
     </string-array>
 
+    <string-array name="niveles_de_dificultad">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Mas jodido que jodidin</item>
+    </string-array>
+
 </resources>

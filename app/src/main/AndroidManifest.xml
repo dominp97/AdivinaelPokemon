@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".JuegoActivity"></activity>
+        <activity android:name=".JuegoActivity" />
+        <activity android:name=".MiFragmentJuego" />
+        <activity android:name=".PerferenciasPersonales"></activity>
     </application>
 
 </manifest>
