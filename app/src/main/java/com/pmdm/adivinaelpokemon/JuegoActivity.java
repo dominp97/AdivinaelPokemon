@@ -1,5 +1,6 @@
 package com.pmdm.adivinaelpokemon;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -18,19 +19,38 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.Random;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
-public class JuegoActivity extends AppCompatActivity {
+public class JuegoActivity extends AppCompatActivity implements View.OnClickListener{
 
+    HashMap<String, Object> mapa;
     LinearLayout lNImagenes;
     int cantidadImagenes;
+    TextView tv1;
+    String[] poke;
+    Bundle savedInstanceState;
 
+
+    //region onCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
+        this.savedInstanceState = savedInstanceState;
+        inicializar();
+
+
+    }
+
+    public void aleatoriezar(){
+        Random r = new Random();
+        tv1.setText(poke[r.nextInt(9)]);
+    }
+
+    public void inicializar(){
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         cantidadImagenes = Integer.parseInt(message);
@@ -62,22 +82,31 @@ public class JuegoActivity extends AppCompatActivity {
         //Creamos botones
         ImageButton btn = new ImageButton(this);
         btn.setImageDrawable(getResources().getDrawable(R.drawable.abra));
+        btn.setOnClickListener(this);
         ImageButton btn1 = new ImageButton(this);
         btn1.setImageDrawable(getResources().getDrawable(R.drawable.eevee));
+        btn1.setOnClickListener(this);
         ImageButton btn2 = new ImageButton(this);
         btn2.setImageDrawable(getResources().getDrawable(R.drawable.mew));
+        btn2.setOnClickListener(this);
         ImageButton btn4 = new ImageButton(this);
         btn4.setImageDrawable(getResources().getDrawable(R.drawable.charmander));
+        btn4.setOnClickListener(this);
         ImageButton btn5 = new ImageButton(this);
         btn5.setImageDrawable(getResources().getDrawable(R.drawable.bullbasaur));
+        btn5.setOnClickListener(this);
         ImageButton btn6 = new ImageButton(this);
         btn6.setImageDrawable(getResources().getDrawable(R.drawable.squirtle));
+        btn6.setOnClickListener(this);
         ImageButton btn8 = new ImageButton(this);
         btn8.setImageDrawable(getResources().getDrawable(R.drawable.jigglypuff));
+        btn8.setOnClickListener(this);
         ImageButton btn9 = new ImageButton(this);
         btn9.setImageDrawable(getResources().getDrawable(R.drawable.snorlax));
+        btn9.setOnClickListener(this);
         ImageButton btn10 = new ImageButton(this);
         btn10.setImageDrawable(getResources().getDrawable(R.drawable.venonat));
+        btn10.setOnClickListener(this);
 
 
         //Creamos layouts
@@ -121,10 +150,10 @@ public class JuegoActivity extends AppCompatActivity {
 
         //Creamos random de nombres
 
-        TextView tv1 = new TextView(this);
+        tv1 = new TextView(this);
 
         Resources res = getResources();
-        String[] poke = res.getStringArray(R.array.pokemon);
+        poke = res.getStringArray(R.array.pokemon);
         Random r = new Random();
         tv1.setText(poke[r.nextInt(9)]);
 
@@ -139,8 +168,20 @@ public class JuegoActivity extends AppCompatActivity {
 
         new contador().execute("");
 
+        mapa = new HashMap<String, Object>();
 
+        mapa.put("Abra", btn);
+        mapa.put("Evee", btn1);
+        mapa.put("Mew", btn2);
+        mapa.put("Charmander", btn4);
+        mapa.put("Bulbasur", btn5);
+        mapa.put("Squirtle", btn6);
+        mapa.put("Jigglypuff", btn8);
+        mapa.put("Snorlax", btn9);
+        mapa.put("Venonaut", btn10);
     }
+
+    //endregion
 
     //region Menu
     @Override
@@ -152,20 +193,63 @@ public class JuegoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Toast.makeText(getApplicationContext(),"Has seleccionado: "+item.getTitle(),Toast.LENGTH_LONG).show();
-        startActivity(new Intent(this, MiFragmentJuego.class));
+        if(item.getTitle().equals("Reinciar")){
+            inicializar();
+        }else{
+            startActivity(new Intent(this, MiFragmentJuego.class));
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
     //endregion
 
-    public String click(View view){
 
 
+    //
+    ///
+    ///
+    ///
+    ///
+    public void click(View view){
+        ImageButton img = (ImageButton) view;
+        ImageButton imgT = (ImageButton) mapa.get(tv1.getText());
+        CharSequence text;
+        if(img == imgT){
+            text = "Puto amo tio!";
+        }else{
+            text = "no tio!";
+        }
+        Context context = getApplicationContext();
 
-        return "";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        ImageButton img = (ImageButton) v;
+        ImageButton imgT = (ImageButton) mapa.get(tv1.getText());
+        CharSequence text;
+        if(img == imgT){
+            text = "Puto amo tio!";
+            aleatoriezar();
+        }else{
+            text = "no tio!";
+        }
+        Context context = getApplicationContext();
+
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
 
+    //region reloj
     private class contador extends AsyncTask<String, Void, String> {
 
         private Button btnT;
@@ -196,6 +280,7 @@ public class JuegoActivity extends AppCompatActivity {
             btnT.setText(contrareloj+"");
         }
     }
+    //endregion
 
 
 }
