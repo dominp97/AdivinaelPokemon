@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
@@ -32,6 +33,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     TextView tv1;
     String[] poke;
     Bundle savedInstanceState;
+    int aciertos;
 
 
     //region onCreate
@@ -41,16 +43,21 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_juego);
         this.savedInstanceState = savedInstanceState;
         inicializar();
-
+        aciertos = 0;
+        new contador().execute("");
 
     }
 
     public void aleatoriezar(){
         Random r = new Random();
-        tv1.setText(poke[r.nextInt(9)]);
+        aciertos++;
+        tv1.setText(poke[r.nextInt(9)]+" Aciertos : "+aciertos);
+
     }
 
     public void inicializar(){
+        //contadorN = findViewById(R.id.contadorN);
+        //contadorN.setText("0");
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         cantidadImagenes = Integer.parseInt(message);
@@ -166,7 +173,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         lNImagenes.addView(tv1);
 
 
-        new contador().execute("");
+
 
         mapa = new HashMap<String, Object>();
 
@@ -179,6 +186,8 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         mapa.put("Jigglypuff", btn8);
         mapa.put("Snorlax", btn9);
         mapa.put("Venonaut", btn10);
+
+        //nombres = (String[])mapa.keySet().toArray();
     }
 
     //endregion
@@ -198,36 +207,10 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         }else{
             startActivity(new Intent(this, MiFragmentJuego.class));
         }
-
-
         return super.onOptionsItemSelected(item);
     }
     //endregion
 
-
-
-    //
-    ///
-    ///
-    ///
-    ///
-    public void click(View view){
-        ImageButton img = (ImageButton) view;
-        ImageButton imgT = (ImageButton) mapa.get(tv1.getText());
-        CharSequence text;
-        if(img == imgT){
-            text = "Puto amo tio!";
-        }else{
-            text = "no tio!";
-        }
-        Context context = getApplicationContext();
-
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -236,6 +219,10 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         CharSequence text;
         if(img == imgT){
             text = "Puto amo tio!";
+            //TextView contadorN = findViewById(R.id.contadorN);
+            //int numT = Integer.parseInt(contadorN.getText().toString());
+            //numT++;
+            //contadorN.setText(numT);
             aleatoriezar();
         }else{
             text = "no tio!";
@@ -260,7 +247,6 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
 
             try {
                 while(contrareloj > 0){
-
                     contrareloj--;
                     btnT.setText(contrareloj+"");
                     Thread.sleep(1000);
@@ -269,6 +255,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
                 e.printStackTrace();
                 btnT.setText("No va");
             }
+
             return contrareloj+"";
         }
 
